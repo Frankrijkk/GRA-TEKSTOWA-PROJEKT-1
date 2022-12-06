@@ -117,6 +117,22 @@ def finalmlg():
 ##########################################################Przeciwnicy##########################################################################################
 przeciwnicy=["ork_boy","grot","ork_nob","kanye_west","ork_evyboy","Hitler","malpa","cum_monster"]
 
+def duch():
+    global enemy_hp,enemy_dfc,enemy_sila,enemy_spd,enemy_xp,enemy_name
+    enemy_sila=40
+    enemy_hp=100
+    enemy_dfc=10
+    enemy_spd=random.randint(12,20)
+    enemy_xp=70
+    enemy_name="duch"
+def zyd():
+    global enemy_hp,enemy_dfc,enemy_sila,enemy_spd,enemy_xp,enemy_name
+    enemy_sila=30
+    enemy_hp=20
+    enemy_dfc=1
+    enemy_spd=100
+    enemy_xp=30
+    enemy_name="palacy_się_żyd"
 def grot():
     global enemy_hp,enemy_dfc,enemy_sila,enemy_spd,enemy_xp,enemy_name
     enemy_sila=5
@@ -317,11 +333,14 @@ def walka_twoja_tura():
         item=przedmioty[wybor]
         wybor_przedmiotu()
     elif inp==4:
-        if spd+50-enemy_spd>random.randint(0,100):
+        if spd+50-enemy_spd>random.randint(0,100) and final==False:
             print("uciekłeś")
             ucieczka=True
         else:
             print("nie udało ci się uciec")
+        if final:
+            print("nie mozesz uciec z finalowych bitew")
+    
     else:
         print("nie ma takiej opcji")
         walka_twoja_tura()
@@ -412,7 +431,8 @@ def lvl_up():
         poziom+=1
         if poziom%5==0:
             dodatkowy_punkt_xp()
-            print("twój poziom to teraz",poziom)
+            print("dostajesz dodatkowy punkt poniewaz twój poziom jest podzielny przez 5")
+        print("twój poziom to teraz",poziom)
     return
 
 
@@ -702,7 +722,7 @@ def karczma():
 def chatka():
     print("Powoli zmierzasz do CHATKI")
     print("Przechodzisz nad strumykiem po kłodzie.")
-    print("Jesteś przed drzwiami chatki 1.wchodzisz czy 2.rozglądasz się?")
+    print("Jesteś przed drzwiami chatki 1.wchodzisz czy 2.rozglądasz się? Czy 3 Powrót na pod statek")
     while True:
         inp=str(input())
         if inp == "1":
@@ -813,10 +833,6 @@ def chatka():
 
             chatka()
             break
-
-
-
-            break
         elif inp == "2":
             print("Rozglądasz się wokół spustoszonego świata...")
             inp=input()
@@ -830,7 +846,7 @@ def chatka():
             print("czyli na tej planecie przebywają nie tylko nazistowskie grzyby...")
             chatka()
             break
-        elif inp == "POWRÓT":
+        elif inp == "3":
             obok_statku()
         else:
             print("nie ma takiej opcji")
@@ -905,7 +921,62 @@ def forteca():
         else:
             print("nie ma takiej opcji")
 
-
+def sypialnia():
+    global szafa,ammo
+    szafa=True
+    print("wszedłeś do sypialni")
+    print("widzisz szafe oraz łóżko")
+    print("ZZA ROGU NAGLE WYSKAKUJE NA CIEBIE JAKIS GRUBY ORK")
+    ork_evyboy()
+    walka()
+    print("uff było blisko teraz rozejrze się po pokoju")
+    print("najpierw patrzysz na <szafe> czy na <łóżko>")
+    inp=input().upper()
+    if inp=="SZAFE":
+        print("wow jakie ładne ubrania")
+        print("a co to?")
+        print("w lewym górnym rogu znalazła się amunicja")
+        if szafa:
+            ammo+=100
+            print("+100 amunicji. Twoja amunicja wynosi teraz",ammo)
+            print("Teraz musze zobaczyć co jest pod łóżkiem")
+            print("spoglądasz pod łóżko i widzisz czyjąś ręke")
+            print("BOO... pod łożkiem był duch")
+            duch()
+            walka()
+            print("gratulacje pokonałeś ducha")
+            print("Pod łózkiem znajodwał się ammo box")
+            ammo+=10
+            print("otrzymujesz 10 ammo i masz",ammo)
+            szafa=False
+            forteca_w_srodku()
+        else:
+            print("nic tu juz nie ma")
+            forteca_w_srodku()
+    elif inp=="ŁÓŻKO":
+        if szafa:
+            print("spoglądasz pod łóżko i widzisz czyjąś ręke")
+            print("BOO... pod łożkiem był duch")
+            duch()
+            walka()
+            print("gratulacje pokonałeś ducha")
+            print("Pod łóżkiem znajdował się ammo box")
+            print("otrzymujesz +100 ammo")
+            ammo+=100
+            print("nie no musze zobaczyć co jest w szafie")
+            print("wow jakie ładne ubrania")
+            print("a co to?")
+            print("w lewym górnym rogu znalazła się amunicja")
+            ammo+=10
+            print("+10 amunicji. Twoja amunicja wynosi teraz",ammo)
+            szafa=False
+            forteca_w_srodku()
+        else:
+            print("nic tu juz nie ma")
+            forteca_w_srodku()
+    else:
+        print("źle wpisałeś walczysz z orkiem evyboyem xD")
+        sypialnia()
 
 
 
