@@ -16,6 +16,8 @@ item=""
 enemy_name=""
 
 final=False
+straznik_wiezy=True
+kanye=True
 
 enemy_sila=0
 enemy_hp=0
@@ -211,7 +213,7 @@ def wybor_broni():
 ##############################################################Mechaniki############################################################################
 def kreator_postaci():
     global hp,liczba_punktow_na_start
-    print("Masz do rozdania 5 pkt umiejętności")
+    print("Masz do rozdania ",liczba_punktow_na_start," pkt umiejętności")
     print("W co chcesz je wykorzystać?")
     for i in range(liczba_punktow_na_start):
         print("1.siła")
@@ -337,6 +339,7 @@ def walka_tura_przeciwnika():
 def walka():
     global martwy, xp,enemy_xp,enemy_name
     print("walczysz z ",enemy_name)
+    a=input()
     while enemy_hp>0:
         if spd>=enemy_spd:
             print("twój przeciwnik ma",round(enemy_hp,2),"hp")
@@ -492,6 +495,7 @@ def obok_statku():
             else:
                 print("nie ma takiej opcji")
 def las():
+    global ammo
     print("Powoli zmierzasz do lasu...")
     print("Po 5 minutach docierasz do pierwszego drzewa ")
     print("Znajdujesz fioltowe jabłko")
@@ -560,17 +564,21 @@ def las():
         else:
             print("bezpiecznie wróciłeś pod statku")
             obok_statku()
-    elif inp=="wracam":
+    elif inp=="WRACAM":
             print("bezpiecznie wracasz pod statek")
             obok_statku()
     else:
         print("nie mogąc się zdecydowac wrociles pod statek")
+        obok_statku()
 
 def wieza():
     cum=False
+    global straznik_wiezy,miasto_unlocked
     print("O NIE !!! Podbiega do ciebie strażnik wieży")
-    #ork_nob()
-    #walka()
+    if straznik_wiezy:
+        ork_nob()
+        walka()
+        straznik_wiezy=False
     print("Przechodzisz przez drzwi wejsciowe wieży.")
     print("Masz do wyboru trzy drogi na górę,dół i powrót którą wybierasz?")
     while True:
@@ -698,13 +706,19 @@ def chatka():
     while True:
         inp=str(input())
         if inp == "1":
-            print("Spotykasz nieznajomą postać o ciemnoskórej karnacji, oraz szczodrym zaroście")
+            print("Spotykasz znajomie wyglądającą postać o ciemnoskórej karnacji, oraz szczodrym zaroście")
             inp=input()
             print("nieznajomy: الله عكبار الأم!")
             inp=input()
-            print("wybierz opcje dialogową")
+            print("Cherbatki?")
+            inp=str(input())
+            if inp=="TAK":
+                print("dobra herbatka leczy twoje wszystkie rany")
+                lomza()
+
             print("1.A tak w ogóle, to kim ty kurwa jesteś?")
             print("2.Umiesz po rozmawiać po terrańśku?")
+            print("3.skip")
             inp=str(input())
             if inp == "1":
                 print("Nieznajomy: Oh! A więc pochodzisz z najświętszej Terry!")
@@ -794,7 +808,14 @@ def chatka():
                     print("Uważaj na siebie, chwała Imperatorowi")
                     inp=input()
                     print("Stasiu: Niech Imperator będzie z tobą Inkwizytorze")
+                else:
+                    print("niepoprawna odpowiedź")
+
             chatka()
+            break
+
+
+
             break
         elif inp == "2":
             print("Rozglądasz się wokół spustoszonego świata...")
@@ -809,9 +830,78 @@ def chatka():
             print("czyli na tej planecie przebywają nie tylko nazistowskie grzyby...")
             chatka()
             break
-
         elif inp == "POWRÓT":
             obok_statku()
+        else:
+            print("nie ma takiej opcji")
+def sklep():
+    global xp,ammo
+    print("SPRZEDAWCA: Dzień dobry co chciałbyś u nas kupić?")
+    while xp>=0:
+        print("masz dokładnie",xp,"xp")
+        print("===================cennik=====================")
+        print("1.RPG              - 150 xp      ")
+        print("2.Snajperka        - 100 xp      ")
+        print("3.Latające wąsy    - 200xp   ")
+        print("4.rewolwer z oczami- 50xp ")
+        print("5.amunicja x50     - 50xp ")
+        print("6.wyjście")
+        inp=str(input())
+        if inp=="1":
+            print("pomyślnie zakupiłeś RPG")
+            guns.append("RPG")
+            xp-=150
+            print("zostało ci tyle",xp,"xp")
+        elif inp=="2":
+            print("pomyślno zakupiłeś Snajperkę")
+            guns.append("Snajperka")
+            xp-=150
+            print("zostało ci tyle",xp,"xp")
+        elif inp=="3":
+            print("pomyślno zakupiłeś Latające wąsy")
+            guns.append("Latajace Wasy")
+            xp-=200
+            print("zostało ci tyle",xp,"xp")
+        elif inp=="4":
+            print("pomyślno zakupiłeś rewolwer z oczami")
+            guns.append("rewolwer")
+            xp-=50
+            print("zostało ci tyle",xp,"xp")
+        elif inp=="5":
+            print("pomyślno zakupiłeś amunicje x50")
+            ammo=+50
+            xp-=50
+            print("zostało ci tyle",xp,"xp")
+        elif inp=="6":
+            print("powodzenia !")
+            miasto()
+            break
+        else:
+            print("nie mamy takiego produktu")
+
+    else:
+        print("spadaj nie masz pieniedzy")
+def forteca():
+    print("zbliżasz się do fortecy. czujesz mrok i smród palonych ciał")
+    if kanye:
+        print("Widzisz z daleka pewną czarnoskórą osobę w masce")
+    inp=input("Czy na pewno chcesz tam iść?")
+    while True:
+        if inp=="tak":
+            if kanye:
+                print("gdy podchodzisz bliżej ta tajemnicza postac zdejmuje maske i mowi")
+                print("Ja kocham wszystkich, mam dość segregacji, uważam że każdy człowiek ma w sobie coś wartościowego.")
+                print("PRZEDE WSZYSTKICH HITLER!!!!")
+                print("TO KANYE WEST")
+                kanye_west()
+                walka()
+            else:
+                print("przechodzisz obok zwłok kanye westa i wchodzisz do fortecy")
+            forteca_w_srodku()
+
+        elif inp=="nie":
+            miasto()
+            break
         else:
             print("nie ma takiej opcji")
 
@@ -819,7 +909,9 @@ def chatka():
 
 
 
-
 ##############################################################GRA WŁAŚCIWA####################################################################
 intro_gry()
+kreator_postaci()
 statek()
+
+#POPRAW CHATKĘ
