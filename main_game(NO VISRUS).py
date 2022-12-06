@@ -116,7 +116,14 @@ def finalmlg():
 
 ##########################################################Przeciwnicy##########################################################################################
 przeciwnicy=["ork_boy","grot","ork_nob","kanye_west","ork_evyboy","Hitler","malpa","cum_monster"]
-
+def kobieta():
+    global enemy_hp,enemy_dfc,enemy_sila,enemy_spd,enemy_xp,enemy_name
+    enemy_sila=10
+    enemy_hp=85
+    enemy_dfc=10
+    enemy_spd=random.randint(2,18)
+    enemy_xp=25
+    enemy_name="kobieta"
 def duch():
     global enemy_hp,enemy_dfc,enemy_sila,enemy_spd,enemy_xp,enemy_name
     enemy_sila=40
@@ -340,7 +347,7 @@ def walka_twoja_tura():
             print("nie udało ci się uciec")
         if final:
             print("nie mozesz uciec z finalowych bitew")
-    
+
     else:
         print("nie ma takiej opcji")
         walka_twoja_tura()
@@ -482,6 +489,72 @@ def statek():
     grot()
     walka()
     print("gratulacje pokonałeś pierwszego przeciwinika")
+    print("wychodząc ze statku widzisz dziennik")
+    print("podnosisz go i czytasz:")
+    print("""                       Dziennik Pokładowy: Statek Inkwizytora Jana
+    -----------------------------------------------------------------------------------------------------------------------------------
+        Dzień 1:                                                                                                                      
+                Wyruszamy na misję walki z herezją, lecimy na planetę Armageddon.                                                     
+                W imię Boga, w imię naszego Boga Imperatora! Za Imperium ludzkości!                                                  
+                Dopilnujemy, by misja zakończyła się sukcesem, szczególnie z taką załogą!
+                Jest z nami Święty Jan, Inkwizytor, jak i kapitan Inkwizycji, znany wśród 
+                wszystkich jako zasłużony wielkiemu Imperium, morale podniosły się ku górze.
+                
+
+        Dzień 8:
+                Mijamy wiele planet, wkrótce wylecimy ze strefy skolonizowanej przez Imperium ludzkości.
+                Na swej drodze spotkaliśmy piratów, ale kto by byl na tyle głupi by atakować nasz statek?
+                Kto? No właśnie... Pytał Kapitan Inkwizytor, okazało się że piraci nas zaatakowali.
+                Ich próba jednakże skońćzyła się niepowodzeniem, zanim oddali jakikolwiek strzał,
+                starszy-strzelec Wacław zestrzelił skurwieli jedną celną salwą z działa plazmowego!
+                Miło, że chłopaki mogą chociaż poćwiczyć sobie cela, kontynuujemy podróż w spokoju.
+
+
+        Dzień 15:
+                Wkroczyliśmy przez podróż osnową na tereny zajmowane przez siły zdrajców i Xenos, 
+                jesteśmy nieopodal celu, jednakże psionicy wyczuwają moce wroga działające na statek.
+                Jeden z tech-kapłanów, mówił o jakimś szwankowaniu ducha maszyny w jednym z silników. 
+                Jednakże jesteśmy silni. Imperator nas chroni! Nie zawiedziemy go! W imieniu ludzkości!
+
+
+    =================================================================================================================================
+        Orkowie- Opisanie rasy:
+                      Orkowie, zwanie również kosmicznymi grzybami przez ludzkość znani są nam od zarania dziejów.
+                Od zawsze te półgłowe stworzenia przeszkadzały nam w spokojnym życiu, nie mówiąc juz nic o innych rasach...
+                Stworzone przez pradawnych, ich jedynym życiowym celem jest picie, jedzenie i walka (z naciskiem na to ostatnie).
+                Są rasą tak zakorzenioną w wojnie, że pokój wydaje się dla nich niepojęty, ich hordy przemierzają naszą galaktykę.
+                Prawda jest taka, że jeśli jakaś planeta zostanie przez nich najechana, to można uznać ją za straconą.
+                Jest tak, ponieważ Orkowie mnożą się jak grzyby, z badań wynika że mają budowę podobną do zwierząt i fungus.
+                Istoty te dzielą się na klany, które wśród siebie rywalizują, nie widać w nich znaczącej inteligencji.
+                Faktem właściwie jest to, że inteligenję zastąpili instynktem przetrwania, brakuje im logicznego myślenia.
+                Na szczęście nikomu nigdy nie udało się zdjednoczyć wszystkich Orkoidów, brakuje im brutalnego lidera.
+                Cecha wartą zapamiętania jes to, że orkowie nie umieją strzelać, broń dystansową posiadają, jednakże
+                służy ona zazwyczaj tylko jako ozdoba, są strasznie niecelni i strzelają z biodra na oślep.
+
+             Orkowie posiadają swoją hierarchię uzależnioną od wielkości i siły osobnika:
+
+                1. Gretchiny, zwane Goblinami... Orkowie w swym społeczeństwie używają ich raczej
+                jako piłki do gry, bądź jako niewloników, gdyż mają nie całe poł metra, są bardzo słabi.
+                Są oni najniżej w hierarchii, dla kogoś umiejętnego zupełnie nie szkodliwi.
+
+                2. Boyz, to podstawowi wojownicy, Są opancerzeni dosyć ubogo, ich cechą jest liczebność.
+                Do walki używają zaostrzonych kawałków metalu, dużych siekier, a także sporych "noży".
+                Często dowodzi nimi Nob, większy i silniejszy ork, który przeżył więcej.
+
+                3. 'Evy Boyz, Jest to rodzaj boyzów, którzy zadecydowali się, że warto zadbać o życie.
+                Posiadają zatem dodatkowe płyty pancerza, jak i hełmy, jednak ogranicza to ich ruchy.
+                Zamiast broni do walki wręcz używają stalowych tarcz balistycznych.
+
+                4. Nobz, Silni, bardziej doświadczeni i więksi rozmiarem orkowie, lubią świecidełka.
+                Często dowodzą oddziałami Boyzów, są przy tym brutalni, a strach karają  śmiercią.
+                Bez odpowiedniej broni, starcie z Nobem często kończy się rozdarciem na strzępy.
+
+                5. Warboss, Da WAAAAGH Lord! To oni dowodzą całym klanem, mówi się, że 
+                istnieją orkowie powołani przez Gorka i Morka, mają oni za zadnie zjednoczyć orków, by
+                wyruszyć na wielkie WAAAAAAAAGH, które oznacza po orkowemu wielką bitkę, podczas niej
+                niszczone jest wszystko na drodze, galaktyka zalewa się zielonoskórymi.
+""")
+    print("damn musiałem być nieprzytomny naprawdę długo ")
     obok_statku()
 def obok_statku():
     print("Po prawej stronie widzisz tajemniczy las z bardzo wysokimi niebiesko iglastymi drzewami")
@@ -977,8 +1050,19 @@ def sypialnia():
     else:
         print("źle wpisałeś walczysz z orkiem evyboyem xD")
         sypialnia()
+def kuchnia():
+    print("Wchodzisz do kuchni")
+    print("Widzisz rozrzucone i pobite talerze na ziemii")
+    print("Oho, ktoś tu był...")
+    print("Twoim oczom ukazuje się kobieta!")
+    print("jestem królową tego miejsca!")
+    kobieta()
+    walka()
+    print("kobieta pada na ziemię")
+    print("ha, women, idealnie na swoim miejscu... czyli w kuchni")
 
-
+    inp=input().upper()
+    forteca_w_srodku()
 
 ##############################################################GRA WŁAŚCIWA####################################################################
 intro_gry()
